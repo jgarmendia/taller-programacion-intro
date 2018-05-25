@@ -1,0 +1,41 @@
+var a = 0;
+var b = 0;
+var c = 0;
+var x1 = 0;
+var x2 = 0;
+onEvent("botonComenzar", "click", function(event) {
+  console.log("botonComenzar clicked!");
+  setScreen("pantallaCalcular");
+});
+onEvent("botonCalcular", "click", function(event) {
+  console.log("botonCalcular clicked!");
+  a = getNumber("valorA");
+  b = getNumber("valorB");
+  c = getNumber("valorC");
+  var discriminante = (b * b) - (4 * a * c);
+  if (discriminante == 0) {
+    x1 = -b / (2 * a);
+    x2 = x1;
+  } else if ((discriminante > 0)) {
+    x1 = (-b + Math.sqrt(b * b - (4 * a * c))) / (2 * a); 
+    x2 = (-b - Math.sqrt(b * b - (4 * a * c))) / (2 * a);
+  } else {
+    x1 = 0;
+    x2 = 0;
+  }
+  setScreen("pantallaResultados");
+  setNumber("resultado1", x1);
+  setNumber("resultado2", x2);
+});
+onEvent("botonReiniciar", "click", function(event) {
+  console.log("botonReiniciar clicked!");
+  setScreen("pantallaInicio");
+  a = 0;
+  b = 0;
+  c = 0;
+  x1 = 0;
+  x2 = 0;
+  setText("valorA", "");
+  setText("valorB", "");
+  setText("valorC", "");
+});
